@@ -1,7 +1,7 @@
 <h1 align="center">프로젝트 : EatDa</h1>
 <br><br>
 <br>
-<img width="1004" alt="스크린샷 2022-01-14 오후 6 33 23" src="https://user-images.githubusercontent.com/82820237/149492895-0e3b76f7-1e05-467e-927a-34af8787b2a3.png">
+<img width="1018" alt="스크린샷 2022-01-14 오후 6 35 00" src="https://user-images.githubusercontent.com/82820237/149493147-3b325113-13d3-4145-b35a-579aa499b29b.png">
 <br>
 <img width="1012" alt="스크린샷 2022-01-14 오후 5 30 35" src="https://user-images.githubusercontent.com/82820237/149492523-a740e96c-cdf7-4faa-99a4-7f4e3c039d86.png">
 <br>
