@@ -22,7 +22,7 @@
 <ul>
   <li><b>담당 파트</b> : 메인(index), 마켓 메인, 마켓 개별, 장바구니, 결제 페이지, 결제 완료 페이지, 음BTI</li>
   <li>블로그를 통해서 ERD, 시연영상 등을 확인할 수 있습니다.</li>
-  <li><a href="https://blog.naver.com/kangactor123/222563346394">바로가기></a></li>
+  <li><a href="https://blog.naver.com/kangactor123/222612643539">바로가기></a></li>
 </ul>
 <img width="1440" alt="스크린샷 2022-01-14 오후 6 37 13" src="https://user-images.githubusercontent.com/82820237/149493536-9f4b1cd1-3ba4-4860-b41d-2af14087a0e6.png">
 <br>
