@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypage">
+
+	<resultMap type="subscriptionDto" id="subscriptionMap">
+		<result property="subscription_id" column="SUBSCRIPTION_ID"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="subscription_title" column="SUBSCRIPTION_TITLE"/>
+		<result property="subscription_price" column="SUBSCRIPTION_PRICE"/>
+		<result property="subscription_type" column="SUBSCRIPTION_TYPE"/>
+		<result property="subscription_term" column="SUBSCRIPTION_TERM"/>
+	</resultMap>
+
+	<!-- 구독 내역 -->
+	<select id="subscriptionList" resultType="subscriptionDto" parameterType="string">
+		SELECT *
+		FROM SUBSCRIPTION
+		WHERE USER_ID = #{user_id}
+	</select>
+	
+	<!-- 배송 예정 상품 -->
+	<select id="deliveryProduct" resultType="productDto">
+	 	SELECT * FROM PRODUCT ORDER BY P_NO
+	</select>
+	
+	<!-- 구독 상품 변경 -->
+	<select id="getMarketProduct" resultType="productDto">
+	 	SELECT * FROM PRODUCT ORDER BY P_NO DESC
+	 </select>
+	
+	<!-- 쿠폰함 -->
+	<select id="couponList" resultType="couponDto" parameterType="string">
+		SELECT COUPON_ID, USER_ID, COUPON_NAME, COUPON_DES, COUPON_RATE, COUPON_TERM
+		FROM COUPON_LIST 
+		JOIN COUPON USING(COUPON_ID)
+		WHERE USER_ID = #{user_id}
+	</select>
+	
+	<!-- 블로그 -->
+	<select id="blogLikeList" parameterType="string" resultType="blogDto">
+		SELECT BLOG_NO, BLOG_TITLE, BLOG_CONTENT, BLOG_CONTENT
+		FROM BLOG 
+		JOIN BLOG_LIKE b USING(BLOG_NO)
+		WHERE b.USER_ID = #{user_id}
+	</select>
+	
+	<!-- 주문한 상품 -->
+	<select id="marketOrderList" parameterType="string" resultType="orderProductDto">
+		SELECT P_ID, P_NAME, PRICE, IMG_PATH, ORDER_ID
+		FROM E_ORDER
+		JOIN ORDER_PRODUCT USING(ORDER_ID)
+		JOIN PRODUCT USING(P_ID)
+		WHERE USER_ID = #{user_id}
+	</select>
+	
+	<!-- 주문내역 -->
+	<select id="marketOrderList2" parameterType="string" resultType="orderDto">
+		SELECT ORDER_ID, ORDER_DATE
+		FROM E_ORDER
+		WHERE USER_ID = #{user_id}
+		ORDER BY ORDER_DATE DESC
+	</select>
+	
+	<!-- 리뷰 작성 -->
+	<insert id="registReview" parameterType="reviewDto">
+		INSERT INTO REVIEW
+		VALUES(REVIEW_NO_SEQ.NEXTVAL, #{order_id}, #{p_id}, #{review_content}, SYSDATE)
+	</insert>
+	
+	
+
+</mapper>

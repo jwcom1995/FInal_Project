@@ -1,0 +1,290 @@
+@charset "UTF-8";
+
+span { 
+	line-height:27px;
+}
+
+
+.top-section {
+	width: 65%;
+	height: 550px;
+	margin: 0 auto;
+}
+
+.top-left-section {
+	width: 47%;
+	height: 90%;
+	float: left;
+	padding: 2px;
+}
+
+#img {
+	width: 100%;
+	height: 100%;
+}
+
+.top-right-section {
+	width: 48%;
+	height: 90%;
+	float: right;
+	padding: 2px;
+}
+.tap-section {
+	width: 50%;
+	height: auto;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 40px;
+}
+
+.tap-button {
+	margin-left: -5px;
+	margin-right: -5px;
+	width: 24%;
+	height: 55px;
+}
+.bottom-section {
+	width: 50%;
+	height: auto;
+	margin: 0 auto;
+	
+}
+
+.detail-wrap {
+	width: 80%;
+	height: 550px;
+	margin:0 auto;
+	margin-top:30px;
+	margin-bottom:30px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+.review-wrap {
+	width: 90%;
+	height:100%;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.review-ul {
+	height:40px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.review-ul-body {
+	height:600px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.li-tag {
+	width:100%;
+	list-style: none;
+}
+.review-top {
+	width:100%;
+	border-bottom: 1px solid;
+	padding-bottom: 5px;
+}
+
+.review-box {
+	border-bottom: 1px solid;
+	padding: 5px;
+	height: 70px;
+}
+
+.review-top>span {
+	font-size: larger;
+	padding: 1px;
+}
+
+em {
+	padding-top: 10px;
+	float: right;
+	font-size: x-small;
+}
+
+.profile-img {
+	float: left;
+}
+
+.profile {
+	width: 50px;
+	height: 50px;
+}
+
+.review-text-div {
+	margin-left: 70px;
+}
+.div-top-section {
+	padding: 5px 10px 10px 10px;
+	border-bottom: 1px solid;
+	margin: 0 10px 10px 10px;
+}
+.short-desc {
+	font-size: small;
+	color: rgb(172, 167, 167);
+	margin: 0 0 0 3px;
+}
+
+.title {
+	font-size: x-large;
+	letter-spacing: 3px;
+	font-weight: bolder;
+}
+
+.button-wrap {
+	border: 0;
+	text-align: center;
+}
+
+.top-button {
+	width: 32%;
+	height: 40px;
+}
+
+.seller-div {
+	height: 27%;
+	padding-bottom:5%;
+}
+
+.right-info-title {
+	width: 30%;
+	height: 30px;
+	font-weight: bold;
+	color: rgb(89, 86, 86);
+	font-size: larger;
+}
+
+.right-info-desc {
+	width: 100%;
+	height: fit-content;
+	font-size: small;
+	margin-top: 5px;
+	margin-left: 15px;
+	letter-spacing: 1px;
+}
+.desc-wrap {
+	padding-top: 20px;
+	margin-bottom: 40px;
+}
+
+.product-desc {
+	height: 60px;
+	width: 55%;
+	margin: 0 auto;
+	padding: 20px;
+	border-bottom: 1px dotted;
+}
+
+.desc-title {
+	letter-spacing: 1px;
+	font-weight: bold;
+	color: olive;
+	font-size: larger;
+	margin-left: 10px;
+}
+
+.desc-info {
+	margin-left: 30px;
+	font-size: medium;
+	color: rgb(152, 144, 144);
+	letter-spacing: 1px;
+}
+.modal-img-section {
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+.product-img {
+	width: 90px;
+	height: 90px;
+	border-radius: 4px;
+}
+
+.modal-info-section {
+	width: 80%;
+	height: 90px;
+	float: right;
+}
+
+#left-Button:hover {
+	cursor: pointer;
+}
+
+#right-Button:hover {
+	cursor: pointer;
+}
+
+.modal-info-title {
+	width: 60%;
+	height: 90px;
+	float: left;
+	padding-top: 35px;
+	font-size: small;
+	font-weight: lighter;
+	letter-spacing: 1px;
+	padding-left: 10px;
+}
+
+.modal-info-quantity {
+	width: 20%;
+	height: 90px;
+	float: left;
+	padding-top: 30px;
+	font-weight: bold;
+	font-size: larger;
+}
+
+.modal-info-price {
+	width: 20%;
+	height: 90px;
+	float: left;
+	padding-top: 30px;
+	font-weight: bold;
+	font-size: large;
+}
+
+.fixed-Banner {
+  right:0px;
+  position:fixed; width:100px; margin:5% 5% 1% 1%; height:250px;
+  padding:10px; box-shadow: 0 5px 5px grey; border-radius: 9px;
+  border: 1px gray solid; overflow:scroll; z-index:1; background-color:white;
+}
+
+.like-title {
+	font-size: small;
+	text-align: center;
+	font-weight: bold;
+}
+
+.like-img-div {
+	margin-top: 10px;
+	padding: 1%;
+	text-align: center;
+	border-bottom: 1px dotted gray;
+}
+
+.like-img {
+	border-radius: 10px;
+	width: 60px;
+	height: 60px;
+}
+.like-img:hover {
+	cursor:pointer;
+}
+
+.product-desc-letter {
+	letter-spacing:2px;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.bottom-gray {
+	border-bottom: 1px dotted gray;
+}
+.top-gray {
+	margin-top:100px;
+	border-top: 1px dotted gray;
+}

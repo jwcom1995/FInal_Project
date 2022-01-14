@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="blog">
+	<resultMap type="blogDto" id="blogMap">
+		<result property="blog_no" column="BLOG_NO" />
+		<result property="user_id" column="USER_ID"/>
+		<result property="blog_title" column="BLOG_TITLE"/>
+		<result property="blog_content" column="BLOG_CONTENT"/>
+		<result property="blog_count" column="BLOG_COUNT"/>
+		<result property="blog_like" column="BLOG_LIKE"/>
+		<result property="blog_img" column="BLOG_IMG"/>
+		<result property="regdate" column="REGDATE"/>
+		<result property="reply_count" column="REPLY_COUNT"/>
+	</resultMap>
+	
+	<select id="lastNumber" resultType="int">
+		SELECT MAX(BLOG_NO) FROM BLOG
+	</select>
+	
+	<select id="blogList" parameterType="list" resultMap="blogMap">
+		SELECT *
+		FROM 
+		(SELECT ROWNUM,BLOG_NO,USER_ID,BLOG_TITLE,BLOG_CONTENT,BLOG_COUNT,BLOG_LIKE,BLOG_IMG,REGDATE, 
+						(SELECT COUNT(*) FROM BLOG_REPLY WHERE BLOG_NO=BLOG.BLOG_NO) AS REPLY_COUNT 
+		FROM BLOG ORDER BY BLOG_NO DESC)
+	</select>
+	
+	<select id="pagingBlog" resultType="int">
+		SELECT COUNT(*) FROM BLOG
+	</select>
+	
+	<select id="searchBlog" parameterType="string" resultType="blogDto">
+		SELECT * 
+		FROM BLOG
+		WHERE BLOG_TITLE LIKE #{keyword}
+		ORDER BY BLOG_NO DESC
+	</select>
+	
+	<select id="blogDetail" resultType="blogDto" parameterType="int">
+		SELECT *
+		FROM BLOG
+		WHERE BLOG_NO = #{blog_no}
+	</select>
+	
+	<insert id="blogInsert" parameterType="blogDto">
+		INSERT INTO BLOG
+		VALUES(BLOG_NO_SEQ.NEXTVAL, #{user_id}, #{blog_title}, #{blog_content}, 0, 0, #{blog_img}, SYSDATE, 0)
+	</insert>
+	
+	<select id="selectBlogNo" parameterType="String" resultType="blogDto">
+		SELECT BLOG_NO FROM BLOG WHERE BLOG_TITLE=#{blog_title}
+	</select>
+	
+	<update id="blogUpdate" parameterType="blogDto">
+		UPDATE BLOG
+		SET BLOG_TITLE=#{blog_title}, BLOG_CONTENT=#{blog_content}
+		WHERE BLOG_NO=#{blog_no}
+	</update>
+	
+	<delete id="blogDelete" parameterType="int">
+		DELETE FROM BLOG WHERE BLOG_NO=#{blog_no}
+	</delete>
+	
+	<update id="blogCount" parameterType="int">
+		UPDATE BLOG
+		SET BLOG_COUNT = BLOG_COUNT + 1
+		WHERE BLOG_NO = #{blog_no}
+	</update>
+	
+	<!-- Admin Blog -->
+	<select id="adminBlogList" parameterType="list" resultMap="blogMap">
+		SELECT * FROM BLOG
+		ORDER BY BLOG_NO DESC
+	</select>
+	
+	<delete id="adminBlogDelete" parameterType="int">
+		DELETE FROM BLOG WHERE BLOG_NO=#{blog_no}
+	</delete>
+	
+	<select id="adminBlogCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM BLOG
+		WHERE 1>BLOG_COUNT
+	</select>
+	
+	<select id="newAdminBlogCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM BLOG
+		WHERE 1>BLOG_COUNT
+	</select>
+	
+</mapper>

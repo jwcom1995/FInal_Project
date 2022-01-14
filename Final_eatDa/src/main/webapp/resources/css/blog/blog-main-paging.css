@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.blog-article__paging{
+  margin-top: 35px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.blog-article__paging .pagination{
+	float:left;
+	margin-left:30%;
+}
+
+.pagination a, #left-paging, #right-paging{
+  margin: 0px 10px;
+  color:#666666;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.blog-article__paging .pagination a:hover, #left-paging:hover, #right-paging:hover {
+	cursor:pointer;
+  color: rgb(255, 157, 29);
+  text-decoration: underline;
+  transform: translateY(2px);
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="common">
+	 <select id="getMarketData" resultType="productDto">
+	 	SELECT * FROM (SELECT ROWNUM, P_ID, P_NAME, P_PRICE, IMG_PATH, P_SHORT_DESC, P_DESCRIPTION FROM PRODUCT)
+	 </select>
+	 
+	 <select id="getRecentRecipe" resultType="recipeDto">
+	 	SELECT * FROM RECIPE ORDER BY REGDATE DESC
+	 </select>
+	 
+	 <select id="getMbtiProduct" parameterType="string" resultType="mbtiDto">
+	 	SELECT M_NAME, M_CONTENT, P_ID, P_NAME, P_SHORT_DESC, P_DESCRIPTION, IMG_PATH, P_PRICE
+		FROM MBTI
+		JOIN PRODUCT ON (REC_PRODUCT = P_ID)
+		WHERE M_NAME = #{m_name}
+	 </select>
+	 
+	 <select id="getPopularBlog" resultType="blogDto">
+	 	SELECT *
+		FROM (SELECT * FROM BLOG ORDER BY BLOG_LIKE DESC)
+		WHERE 4 > ROWNUM
+	 </select>
+	 
+	 <select id="getLovingRecipe" resultType="recipeDto">
+	 	SELECT RECIPE_COUNT, RECIPE_NO, RECIPE_TITLE, RECIPE_CONTENT, RECIPE_IMG, R_SHORT_DESC
+		FROM (SELECT * FROM RECIPE ORDER BY RECIPE_COUNT DESC)
+		WHERE 4 > ROWNUM
+	 </select>
+	 
+	 <select id="getOrderDto" resultType="orderDto">
+	 	SELECT * FROM E_ORDER
+		WHERE ORDER_ID = #{order_id} AND USER_ID = #{user_id}
+	 </select>
+</mapper>

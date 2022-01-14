@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+.event-update__content {
+  margin: 40px 20px;
+  text-align: center;
+}
+
+.event-update__content-title{
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 0.3px solid rgb(235, 235, 235);
+}
+
+.event-update__content-title>h2{
+  font-size: 25px;
+  margin-left: -50px;
+  color:#444444;
+}
+
+.event-update__content-article{
+  margin-top: 30px;
+  text-align: justify;
+	margin-left: 10%;
+}
+
+.event-update__content-article input[name="event_title"]{
+  width:840px;
+  height:40px;
+  border:0.5px solid gainsboro;
+  padding-left:10px;
+  font-size: 16px;
+  margin-left: 10%;
+}
+
+.event-update__content-article input[name="event_title"]:focus{
+  outline:0.5px solid rgb(213, 214, 118);
+}
+
+.event-update__content-article__btns{
+		margin-top:20px;
+}
+
+.event-update__content-article input[name="update-submit-btn"]{
+  margin-left: 60%;
+}
+
+.event-update__content-article input[name="update-cancel-btn"]{
+  margin-left: 10px;
+}
+
+.event-update__content-article input[name="update-submit-btn"],input[name="update-cancel-btn"]{
+  width: 90px;
+	height: 42px;
+  font-size: 15px;
+	font-weight: bold;
+	transition: 0.25s;
+  border-radius: 2px;
+  border:0.5px solid rgb(245, 203, 66);
+  background-color: #fae57f;
+  box-shadow: 3px 3px 0px rgba(255, 153, 0, 0.6);
+}
+
+.event-update__content-article input[name="update-submit-btn"]:hover, input[name="update-cancel-btn"]:hover{
+  cursor: pointer;
+  transform: translateY(3px);
+	color: rgb(233, 133, 2);
+	background-color: #fae57f;
+  box-shadow: inset 2px 2px 0px rgba(255, 153, 0, 0.6);
+}

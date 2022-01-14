@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="event">
+	<resultMap type="eventDto" id="eventMap">
+		<result property="event_no" column="EVENT_NO" />
+		<result property="event_title" column="EVENT_TITLE"/>
+		<result property="event_content" column="EVENT_CONTENT"/>
+		<result property="event_img" column="EVENT_IMG"/>
+		<result property="regdate" column="REGDATE"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+	
+	<select id="eventList" resultMap="eventMap">
+		SELECT * FROM EVENT 
+		ORDER BY EVENT_NO DESC
+	</select>
+	
+	<select id="eventDetail" resultType="eventDto" parameterType="int">
+		SELECT EVENT_NO, EVENT_TITLE, EVENT_CONTENT, EVENT_IMG, REGDATE
+		FROM EVENT
+		WHERE EVENT_NO = #{event_no}
+	</select>
+	
+	<insert id="eventInsert" parameterType="eventDto">
+		INSERT INTO EVENT(EVENT_NO, EVENT_TITLE, EVENT_CONTENT, EVENT_IMG, REGDATE)
+		VALUES(EVENT_NO_SEQ.NEXTVAL, #{event_title}, #{event_content}, #{event_img}, SYSDATE)
+	</insert>
+	
+	<update id="eventUpdate" parameterType="eventDto">
+		UPDATE EVENT
+		SET EVENT_TITLE=#{event_title}, EVENT_CONTENT=#{event_content}
+		WHERE EVENT_NO=#{event_no}
+	</update>
+	
+	<delete id="eventDelete" parameterType="int">
+		DELETE FROM EVENT WHERE EVENT_NO=#{event_no}
+	</delete>
+	
+	<!-- Admin Event Status Update -->
+	<update id="adminEventStatus" parameterType="eventDto">
+		UPDATE EVENT
+		SET STATUS=#{status}
+		WHERE EVENT_NO=#{event_no}
+	</update>
+</mapper>

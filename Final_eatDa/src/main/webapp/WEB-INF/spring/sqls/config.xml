@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	
+ 
+  	<typeAliases>
+  		<typeAlias type="com.project.eatda.dto.UserDto" alias="userDto"/>
+  		<typeAlias type="com.project.eatda.dto.OrderDto" alias="orderDto"/>
+  		<typeAlias type="com.project.eatda.dto.MbtiDto" alias="mbtiDto"/>
+  		<typeAlias type="com.project.eatda.dto.OrderProductDto" alias="orderProductDto"/>
+  		<typeAlias type="com.project.eatda.dto.CouponDto" alias="couponDto"/>
+  		<typeAlias type="com.project.eatda.dto.EventDto" alias="eventDto"/>
+  		<typeAlias type="com.project.eatda.dto.BlogLikeDto" alias="blogLikeDto"/>
+  		<typeAlias type="com.project.eatda.dto.BlogDto" alias="blogDto"/>
+  		<typeAlias type="com.project.eatda.dto.ProductDto" alias="productDto"/>
+  		<typeAlias type="com.project.eatda.dto.CartProductDto" alias="cartProductDto"/>
+  		<typeAlias type="com.project.eatda.dto.ReviewDto" alias="reviewDto"/>
+  		<typeAlias type="com.project.eatda.dto.ProductLikeDto" alias="productLikeDto"/>
+  		<typeAlias type="com.project.eatda.dto.RecipeDto" alias="recipeDto"/>  	
+  		<typeAlias type="com.project.eatda.dto.SubscriptionDto" alias="subscriptionDto"/>
+  		<typeAlias type="com.project.eatda.dto.BlogReplyDto" alias="replyDto"/>
+  		<typeAlias type="com.project.eatda.dto.ReportDto" alias="reportDto" />  
+  		<typeAlias type="com.project.eatda.dto.OrderAdminDto" alias="orderAdminDto" />		
+  		<typeAlias type="com.project.eatda.dto.RecipePageBaseDto" alias="recipePageBaseDto"/>  	
+  		<typeAlias type="com.project.eatda.dto.RecipePageDto" alias="recipePageDto"/>  	  		
+  	</typeAliases>
+  	<mappers>
+  		<mapper resource="/mybatis/mapper.xml"/>
+  		<mapper resource="/mybatis/commonMapper.xml"/>
+  		<mapper resource="/mybatis/marketMapper.xml"/>
+  		<mapper resource="/mybatis/blogMapper.xml"/>
+  		<mapper resource="/mybatis/blogLikeMapper.xml"/>
+  		<mapper resource="/mybatis/eventMapper.xml"/>
+  		<mapper resource="/mybatis/recipeMapper.xml"/>  
+  		<mapper resource="/mybatis/mypageMapper.xml"/>  
+  		<mapper resource="/mybatis/adminMapper.xml"/>
+  		<mapper resource="/mybatis/replyMapper.xml"/>
+  	</mappers>
+  </configuration>

@@ -1,0 +1,259 @@
+@charset "UTF-8";
+
+#container {
+	height: auto;
+	margin-bottom: 4%;
+}
+
+.rows-info {
+	height: auto;
+	width: 80%;
+}
+
+.col-left {
+	height: auto;
+	border-right: 1px solid rgb(191, 181, 181);
+}
+
+.box-black {
+	box-shadow: 0px 4px 4px -4px black;
+}
+
+.box-gray {
+	box-shadow: 0px 4px 4px -4px gray;
+}
+
+.title-padding {
+	padding: 2%;
+}
+
+.rows-width {
+	width: 70%;
+	height: 100px;
+	margin: 0px auto;
+}
+
+.first-section {
+	margin-top: 80px;
+	text-align: center;
+}
+
+#trans {
+	width: 40px;
+	height: 40px;
+}
+
+label {
+	margin: 1% 1% 1% 2%;
+	font-size: large;
+}
+
+/* 배송 정보 입력 css */
+#check {
+	margin-left: 10px;
+}
+
+.input-div-f {
+	padding: 5px 5px 5% 5%;
+}
+
+.input-div {
+	margin: 5px;
+	padding: 10px 10px 10px 20px;
+}
+
+.input {
+	width: 85%;
+	height: 30px;
+	margin-top: 10px;
+	border: 0px;
+	border-bottom: 1px rgb(167, 163, 163) solid;
+	text-indent: 10px;
+}
+
+.same-div {
+	margin: 2%;
+	padding-right: 7%
+}
+
+.del-input-div {
+	height: 50px;
+	padding-left: 10px;
+}
+
+.title-box {
+	width: 20%;
+	height: 40px;
+	float: left;
+	font-size: large;
+	text-align: center;
+	padding-top: 5px;
+	border-radius: 4px;
+}
+
+.del-second-div {
+	width: 80%;
+	float: left;
+	padding-left: 14px;
+}
+
+.coupon-div {
+	padding-top: 20px;
+	text-align: center;
+}
+
+.coupon-div select {
+	width: 60%;
+	height: 30px;
+}
+
+.coupon-info {
+	height: 100px;
+	padding: 0 10px 10px 30px;
+}
+
+.coupon-info-ori {
+	width: 40%;
+	height: 100%;
+	float: left;
+	text-align: right;
+	padding: 40px 20px 0 0;
+	font-weight: bold;
+	font-size: x-large;
+}
+
+.coupon-info-icon {
+	width: 10%;
+	float: left;
+	padding-top: 38px;
+}
+
+.coupon-info-after {
+	width: 40%;
+	height: 100%;
+	float: left;
+	padding: 40px 0 0 0;
+	font-weight: bold;
+	font-size: x-large;
+}
+
+.product-row {
+	height: 120px;
+	padding-bottom: 10px;
+}
+
+.p-row-first {
+	width: 20%;
+	float: left;
+	height: 100%;
+	padding: 15px 0 0 15px;
+}
+
+.p-row-first img {
+	width: 80%;
+	height: 90%;
+	border-radius: 5px;
+}
+
+.p-row-second {
+	width: 40%;
+	float: left;
+	height: 100%;
+	padding: 35px 0 0 15px;
+}
+
+.p-row-third {
+	width: 10%;
+	float: left;
+	height: 100%;
+	padding: 35px 0 0 15px;
+}
+
+.p-row-fourth {
+	width: 25%;
+	float: left;
+	height: 100%;
+	padding: 35px 0 0 10%;
+}
+
+.payment-desc {
+	margin-left: 20px;
+	text-decoration: none;
+	color: gray;
+}
+
+.payment-section {
+	padding: 10px 0;
+}
+
+.fixed-Banner {
+	position: fixed;
+	width: 300px;
+	margin: 1%;
+	height: 400px;
+	padding: 10px;
+	box-shadow: 0 5px 5px grey;
+	border-radius: 9px;
+	border: 1px gray solid;
+	z-index: 1;
+	background-color: white;
+}
+
+#agreePay {
+	margin-left: 10px;
+}
+
+input[type=checkbox] {
+	transform: scale(1.5);
+}
+
+.f-price {
+	box-shadow: 0px 4px 4px -4px gray;
+	padding: 4% 0 1% 4%;
+}
+
+.bn-price-sz {
+	height: 18%;
+	width: 100%;
+}
+
+.bn-price-ml {
+	margin-left: 10px
+}
+
+.bn-price-first {
+	margin: 10px 0 0 10px;
+}
+
+.agree-label {
+	font-size: small;
+	width: 80%;
+	padding-left: 10px
+}
+
+.bn-button {
+	padding: 20px;
+	text-align: center;
+}
+
+.bn-price-sz .price {
+	font-size: x-large;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 50px;
+}
+
+#address_kakao:hover {
+	cursor: pointer;
+}
+
+.input-address {
+	width: 50%;
+	float: left;
+}
+
+.input-subAddress {
+	margin-left: 10px;
+	width: 33%;
+	float: left;
+}

@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+/* title */
+.detail-article{
+  text-align: center;
+  margin: 50px 0px;
+}
+
+.detail-article__titlearea{
+  display: inline-block;
+  width:85%;
+}
+
+.detail-article__title, .detail-article__content{
+  padding-bottom: 15px;
+  border-bottom: 0.5px solid gainsboro;
+}
+
+.detail-article__title h2{
+  font-size: 30px;
+  margin-left: -30px;
+}
+
+.detail-article__undertitle{
+	display: flex;
+	justify-content: space-between;
+}
+.detail-article__blog-count{
+	font:italic 13px "Fira Sans", serif;
+	color:#666666;
+	margin-top:15px;
+	margin-left:15px;
+}
+
+/* buttons */
+.detail-article__btn{
+  margin-top: 5px;
+  margin-right: 30px;
+}
+.detail-article__btn span{
+	margin-right: 20px;
+	font:italic 13px "Fira Sans", serif;
+	color:#666666;
+}
+input{
+  font-size:14px;
+  border-radius: 2px;
+  color:#515558;
+}
+
+.detail-article__btn input[type="submit"], [type="button"] {
+	width: 60px;
+	height: 30px;
+	font-weight: bold;
+	transition: 0.25s;
+	margin-left: 10px;
+  border:0.5px solid rgb(245, 203, 66);
+  background-color: #fae57f;
+  box-shadow: 3px 3px 0px rgba(255, 153, 0, 0.6);
+}
+
+.detail-article__btn input[type="submit"]:hover, [type="button"]:hover {
+	cursor: pointer;
+  transform: translateY(3px);
+	color: rgb(233, 133, 2);
+	background-color: #fae57f;
+  box-shadow: inset 2px 2px 0px rgba(255, 153, 0, 0.6);
+}
+
+/* content */
+.detail-article__content{
+  margin: 50px 40px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+/* likes */
+.detail-article__content-likes{
+  text-align: justify;
+  margin-left: 20px;
+  margin-top:70px;
+  position: relative;
+}
+
+.detail-article__content-likes>span{
+  color:#444444;
+  font-size: 12px;
+  font-weight: 200;
+  margin-left: 25px;
+}
+
+/* .detail-article__content-likes a {
+	text-decoration: none;
+	color: rgb(255, 119, 95);
+} */
+
+.detail-article__content-likes i, .detail-article__content-likes h6{
+  display: inline-block;
+}
+
+.detail-article__content-likes>i{
+  position: absolute;
+
+  color:rgb(255, 119, 95);
+  margin-right: 10px;
+}
+
+.detail-article__content-likes>i:hover{
+  cursor: pointer;
+}
+
+.detail-article__content-likes>i:nth-child(2){
+  display: none;
+}
+
+.detail-article__content-likes h6{
+  font-size: 13px;
+  font-weight: 300;
+  color:rgb(243, 151, 135);
+  margin-left: 10px;
+}

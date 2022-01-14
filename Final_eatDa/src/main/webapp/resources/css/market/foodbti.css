@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.header {
+	height: 8%;
+	background-color: #2e363e;
+}
+
+.header-col {
+	height: 100%;
+	padding: 10px;
+}
+
+.head-title {
+	margin-left: 2%;
+	font-size: x-large;
+	color: rgb(232, 226, 226);
+}
+
+.head-title:hover {
+	color: rgb(147, 112, 98);
+	cursor: pointer;
+}
+
+.content-div {
+	height: 100%;
+	box-shadow: 0 0 30px rgb(0 0 0/ 30%);
+	border-radius: 10px;
+}
+
+.content {
+	height: 75%;
+}
+
+.btn-div {
+	height: 15%;
+}
+
+.q-btn {
+	border-radius: 50px;
+}
+
+.paging {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 30px;
+	text-align: right;
+	height: 10%;
+}
+
+.paging>span {
+	font-size: x-large;
+	font-weight: bold;
+}
+
+.question-box {
+	width: 90%;
+	margin: 0 auto;
+	height: 90%;
+	padding: 2%;
+	text-align: center;
+}
+
+.question-div {
+	height: 50%;
+	margin: 30% auto;
+}
+
+.question-div>span {
+	font-weight: 800;
+	font-size: x-large;
+	color: rgb(143, 135, 135);
+}
+
+.question {
+	margin-top: 40px;
+	font-size: x-large;
+	color: rgb(143, 135, 135);
+	font-weight: 700;
+}
+
+.gaegu {
+	font-family: 'Cute Font', cursive;
+	font-family: 'Gaegu', cursive;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;
+}
+
+.after-question {
+	margin-top: 60px;
+	text-align: center;
+	font-size: x-large;
+	color: rgb(143, 135, 135);
+}
+
+.btn-start-div {
+	height: 10%;
+}
+
+/**/
+.after-text {
+	margin-top: 20px;
+	font-size: large;
+	color: #615c5c;
+	font-weight: 700;
+}
+
+.after-content {
+	height: 95%;
+}
+
+.after-body {
+	height: 22%;
+	margin: 5% auto;
+}
+
+.after-paging {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 30px;
+	text-align: right;
+	height: 5%;
+}
+
+.rec-img {
+	width: 90%;
+	height: 100%;
+	border-radius: 10px;
+}
+
+.img-div {
+	margin: 15px 0;
+	height: 50%;
+}
+
+.p-card {
+	height: 430px;
+	width: 60%;
+	margin: 0 auto;
+	box-shadow: 1px 1px 30px 1px rgb(143, 135, 135);
+}
+
+.card-title:hover, .img-div:hover {
+	cursor: pointer;
+}

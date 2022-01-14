@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="market">
+	<resultMap id="productMap" type="productDto">
+		<result property="p_id" column="p_id"/>
+		<result property="p_name" column="p_name"/>
+		<result property="p_short_desc" column="p_short_desc"/>
+		<result property="p_price" column="p_price"/>
+		<result property="p_description" column="p_description"/>
+		<result property="p_cal" column="p_cal"/>
+		<result property="p_amount" column="p_amount"/>
+		<result property="p_category" column="p_category"/>
+		<result property="img_path" column="img_path"/>
+		<result property="seller_desc" column="seller_desc"/>
+	</resultMap>
+
+
+	<select id="productList" resultMap="productMap">
+		SELECT P_ID, P_NAME, P_SHORT_DESC, P_PRICE, IMG_PATH
+		FROM PRODUCT 
+		ORDER BY P_NO DESC
+	</select>
+	
+	<select id="paging" resultType="int">
+		SELECT COUNT(*) FROM PRODUCT
+	</select>
+	
+	<select id="likeProductList" parameterType="string" resultMap="productMap">
+		SELECT IMG_PATH, P_ID, P_NAME, P_PRICE
+		FROM PRODUCT
+		JOIN PRODUCT_LIKE USING(P_ID)
+		WHERE USER_ID = #{user_id}
+	</select>
+	
+	<select id="hashTagSearch" parameterType="string" resultType="productDto">
+		SELECT P_ID, P_NAME, P_SHORT_DESC, P_PRICE, IMG_PATH
+		FROM PRODUCT
+		JOIN PRODUCT_CATEGORY pc USING(P_ID)
+		WHERE pc.P_CATEGORY = #{tagName}
+	</select>
+	
+	<select id="getProduct" resultType="productDto" parameterType="string">
+		SELECT * FROM PRODUCT WHERE P_ID = #{p_id}
+	</select>
+	
+	<select id="searchKeyword" resultType="productDto">
+		SELECT * FROM PRODUCT
+		WHERE P_NAME LIKE #{tagName}
+	</select>
+	
+	<select id="isProduct" parameterType="cartProductDto" resultType="cartProductDto">
+		SELECT * FROM CART_PRODUCT
+		WHERE USER_ID = #{user_id} AND P_ID = #{p_id} AND CATEGORY = 'ADMIN'
+	</select>
+	
+	<select id="getReview" parameterType="string" resultType="reviewDto">
+		SELECT P_ID, REVIEW_CONTENT, REVIEW_REGDATE, USER_ID, USER_NAME, USER_IMG
+		FROM REVIEW
+		JOIN E_ORDER USING(ORDER_ID)
+		JOIN E_USER USING(USER_ID)
+		WHERE P_ID = #{p_id}
+	</select>
+	
+	<insert id="putShoppingBag" parameterType="cartProductDto">
+		INSERT INTO CART_PRODUCT VALUES(#{user_id},#{p_id},#{cart_count},#{cart_price},'NORMAL')
+	</insert>
+	
+	<insert id="likeProductInsert" parameterType="productLikeDto">
+		INSERT INTO PRODUCT_LIKE VALUES(#{user_id}, #{p_id})
+	</insert>
+	
+	<delete id="deleteProductLike" parameterType="productLikeDto">
+		DELETE FROM PRODUCT_LIKE WHERE P_ID = #{p_id} AND USER_ID = #{user_id}
+	</delete>
+	
+	<select id="getCartList" parameterType="cartProductDto" resultType="cartProductDto">
+		SELECT P_ID, CART_COUNT, CART_PRICE, P_NAME, IMG_PATH, CATEGORY
+		FROM CART_PRODUCT
+		JOIN PRODUCT USING (P_ID)
+		WHERE USER_ID = #{user_id} AND CATEGORY = 'NORMAL'
+	</select>
+	
+	<select id="getSubCartList" parameterType="cartProductDto" resultType="cartProductDto">
+		SELECT P_ID, CART_COUNT, CART_PRICE, P_NAME, IMG_PATH, CATEGORY
+		FROM CART_PRODUCT
+		JOIN PRODUCT USING (P_ID)
+		WHERE USER_ID = #{user_id} AND CATEGORY = 'SUBSCRIPTION'
+	</select>
+	
+	<delete id="deleteProductBag" parameterType="cartProductDto">
+		DELETE FROM CART_PRODUCT WHERE P_ID = #{p_id} AND USER_ID = #{user_id} AND CATEGORY = 'NORMAL'
+	</delete>
+	
+	<select id="getCouponList" resultType="couponDto" parameterType="string">
+		SELECT COUPON_ID, USER_ID, COUPON_NAME, COUPON_DES, COUPON_RATE, COUPON_TERM
+		FROM COUPON_LIST 
+		JOIN COUPON USING(COUPON_ID)
+		WHERE USER_ID = #{user_id}
+	</select>
+	
+	<insert id="paySuccess" parameterType="orderDto">
+		INSERT INTO E_ORDER 
+		VALUES(#{order_id},#{user_id},SYSDATE,#{order_addr},#{order_name},#{order_phone},
+				#{order_message},#{order_price},#{pay_option},#{original_price},#{discount_price},#{coupon_rate},#{coupon_id},'주문완료', '결제대기')
+	</insert>
+	
+	<select id="getOrder" parameterType="string" resultType="orderDto">
+		SELECT * 
+		FROM E_ORDER
+		WHERE ORDER_DATE = (SELECT MAX(ORDER_DATE) FROM E_ORDER WHERE USER_ID = #{user_id})
+	</select>
+	
+	<delete id="deleteCartList" parameterType="string">
+		DELETE FROM CART_PRODUCT WHERE USER_ID = #{user_id} AND CATEGORY = 'NORMAL'
+	</delete>
+	
+	<delete id="deleteCoupon" parameterType="orderDto">
+		DELETE FROM COUPON_LIST WHERE USER_ID = #{user_id} AND COUPON_ID = #{coupon_id}
+	</delete>
+	
+	<insert id="insertOrderProduct" parameterType="orderProductDto">
+		INSERT INTO ORDER_PRODUCT VALUES(#{order_id},#{p_id},#{p_count},#{price})
+	</insert>
+	
+	<update id="updateCartList" parameterType="cartProductDto">
+		UPDATE CART_PRODUCT SET CART_COUNT = #{cart_count}, CART_PRICE = #{cart_price} WHERE USER_ID=#{user_id} AND P_ID = #{p_id} AND CATEGORY = 'NORMAL'
+	</update>
+	
+	<select id="getOrderList" parameterType="string" resultType="orderProductDto">
+		SELECT P_NAME, P_COUNT, PRICE, IMG_PATH 
+		FROM ORDER_PRODUCT
+		JOIN PRODUCT USING(P_ID)
+		WHERE ORDER_ID = #{order_id}
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>

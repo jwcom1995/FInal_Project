@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.blog-article{
+  text-align: center;
+  margin: 40px 0px;
+}
+
+input, select{
+  font-size:large;
+  border-radius: 2px;
+}
+
+select{
+  text-align: center;
+  width: 90px;
+	height: 43px;
+	border:0.5px solid gainsboro;
+}
+
+option{
+  border:0.5px solid gainsboro;
+  background-color: #fff;
+}
+
+input[name="keyword"]{
+  width:45%;
+  height:40px;
+  border:0.5px solid gainsboro;
+}
+
+input[name="keyword"]:focus, select:focus{
+  outline: 1px solid rgb(252, 171, 96);
+  border:none;
+  box-shadow: inset 0px 0px 3px rgba(252, 171, 96);
+}
+
+input[type="submit"], [type="button"] {
+	width: 90px;
+	height: 42px;
+	font-weight: bold;
+	transition: 0.25s;
+	margin-left: 10px;
+  border:0.5px solid rgb(245, 203, 66);
+  background-color: #fae57f;
+  box-shadow: 3px 3px 0px rgba(255, 153, 0, 0.6);
+}
+
+input[type="submit"]:hover, [type="button"]:hover {
+	cursor: pointer;
+  transform: translateY(3px);
+	color: rgb(233, 133, 2);
+	background-color: #fae57f;
+  box-shadow: inset 2px 2px 0px rgba(255, 153, 0, 0.6);
+}

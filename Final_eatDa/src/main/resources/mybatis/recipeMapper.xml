@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe">
+	
+	<resultMap type="recipeDto" id="recipeMap">
+		<result property="recipe_no" column="RECIPE_NO"/>
+		<result property="recipe_title" column="RECIPE_TITLE"/>
+		<result property="recipe_category" column="RECIPE_CATEGORY"/>
+		<result property="recipe_content" column="RECIPE_CONTENT"/>
+		<result property="recipe_count" column="RECIPE_COUNT"/>
+		<result property="recipe_img" column="RECIPE_IMG"/>
+		<result property="recipe_enabled" column="RECIPE_ENABLED"/>
+		<result property="regdate" column="REGDATE"/>
+		<result property="r_short_desc" column="R_SHORT_DESC"/>
+	</resultMap>
+	
+	<!-- 레시피 리스트 -->
+		<!-- 페이징 -->
+	<select id="recipeList" parameterType="list" resultMap="recipeMap">
+		<![CDATA[
+			SELECT RECIPE_NO, RECIPE_TITLE, RECIPE_CATEGORY, RECIPE_CONTENT, RECIPE_COUNT, RECIPE_IMG, RECIPE_ENABLED, REGDATE, R_SHORT_DESC
+			FROM (	SELECT ROWNUM RN, A.*
+					FROM(	SELECT RECIPE_NO, RECIPE_TITLE, RECIPE_CATEGORY, RECIPE_CONTENT, RECIPE_COUNT, RECIPE_IMG,RECIPE_ENABLED, REGDATE, R_SHORT_DESC
+							FROM RECIPE
+							WHERE	
+		]]>					
+							<choose>
+								<when test="searchType != null and searchType !=''">
+									<if test="searchType == 'title'">RECIPE_TITLE LIKE '%'||#{keyword}||'%'</if>
+									<if test="searchType == 'content'">RECIPE_CONTENT LIKE '%'||#{keyword}||'%'</if>
+									<if test="searchType == 'titcon'">RECIPE_TITLE LIKE '%'||#{keyword}||'%' OR RECIPE_CONTENT LIKE '%'||#{keyword}||'%'</if>
+								</when>
+								<when test="category != null and category != ''">
+									RECIPE_CATEGORY = #{category}
+								</when> 
+								<otherwise>
+									1=1
+								</otherwise>
+							</choose>
+		<![CDATA[
+							ORDER BY RECIPE_NO DESC ) A )
+			 WHERE RN > (#{pageNum} - 1) * #{amount} AND RN <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	<!-- 전체페이지수-->
+	<select id="getTotal" resultType="Integer">
+		SELECT COUNT(*) AS TOTAL
+		FROM RECIPE
+		WHERE 
+		<choose>
+			<when test="searchType != null and searchType !=''">
+				<if test="searchType == 'title'">RECIPE_TITLE LIKE '%'||#{keyword}||'%'</if>
+				<if test="searchType == 'content'">RECIPE_CONTENT LIKE '%'||#{keyword}||'%'</if>
+				<if test="searchType == 'titcon'">RECIPE_TITLE LIKE '%'||#{keyword}||'%' OR RECIPE_CONTENT LIKE '%'||#{keyword}||'%'</if>
+			</when>
+			<when test="category != null and category != ''">
+				RECIPE_CATEGORY = #{category}
+			</when> 
+			<otherwise>
+				1=1
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 레시피 상세페이지 -->
+	<select id="recipeDetail" resultType="recipeDto" parameterType="int">
+		SELECT RECIPE_NO, RECIPE_TITLE, RECIPE_CATEGORY, RECIPE_CONTENT, RECIPE_COUNT, RECIPE_IMG,RECIPE_ENABLED, REGDATE, R_SHORT_DESC
+		FROM RECIPE
+		WHERE RECIPE_NO = #{recipe_no} 
+	</select>
+	
+	<!-- 레시피 추가 -->
+	<insert id="recipeInsert" parameterType="recipeDto">
+		INSERT INTO RECIPE
+		VALUES(R_NO_SEQ.NEXTVAL,#{recipe_title},#{recipe_category},#{recipe_content},0,#{recipe_img},DEFAULT,SYSDATE,#{r_short_desc})
+	</insert>
+
+	<!-- 레시피 수정 -->
+	<update id="recipeUpdate" parameterType="recipeDto">
+		UPDATE RECIPE
+		SET RECIPE_TITLE=#{recipe_title}, RECIPE_CATEGORY=#{recipe_category}, R_SHORT_DESC=#{r_short_desc}, RECIPE_CONTENT=#{recipe_content}
+		WHERE RECIPE_NO = #{recipe_no} 
+	</update>
+
+	<!-- 레시피삭제 -->	
+	<delete id="recipeDelete" parameterType="int">
+		DELETE FROM RECIPE
+		WHERE RECIPE_NO = #{recipe_no} 
+	</delete>
+
+	<!-- 조회수 -->
+	<update id="recipeCount" parameterType="int">
+		UPDATE RECIPE
+		SET RECIPE_COUNT = RECIPE_COUNT + 1
+		WHERE RECIPE_NO = #{recipe_no}
+	</update>
+	
+	
+	<!-- Admin Recipe List -->
+	<select id="adminRecipeList" resultMap="recipeMap">
+		SELECT * FROM RECIPE
+		ORDER BY RECIPE_NO DESC
+	</select>
+</mapper>

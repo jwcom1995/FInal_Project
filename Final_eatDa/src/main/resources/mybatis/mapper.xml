@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mymember">
+	 
+	<!-- 로그인 -->
+	<select id="loginCheck" resultType="UserDto" parameterType="UserDto">
+		SELECT * FROM E_USER
+		WHERE USER_ID = #{user_id} AND USER_PW = #{user_pw}
+	</select>
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(USER_ID) FROM E_USER
+		WHERE USER_ID = #{user_id}
+	</select>
+	 
+	<!-- 회원가입 -->
+	<insert id="memberRegist" parameterType="UserDto">
+		INSERT INTO E_USER
+		VALUES(#{user_id}, #{user_pw}, #{user_name}, #{user_addr}, #{user_email}, #{user_phone}, 'USER', #{user_img}, '0', 'Y', #{user_mailing}, #{user_addr_sub} )
+	</insert>
+	
+	<!-- 회원정보 수정 -->
+	<update id="memberUpdate">
+		UPDATE E_USER SET
+		USER_PW = #{user_pw}, USER_EMAIL = #{user_email}, USER_MAILING = #{user_mailing}, 
+		USER_ADDR = #{user_addr}, USER_PHONE = #{user_phone}, USER_ADDR_SUB = #{user_addr_sub}
+		WHERE USER_ID = #{user_id}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="memberDelete">
+		UPDATE E_USER SET
+		USER_ENABLE = 'N'
+		WHERE USER_ID = #{user_id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+.wrap {
+	height: 100%;
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+.rows-width {
+	width: 80%;
+}
+
+.rows-margin {
+	margin: 0 auto;
+}
+
+.order-title {
+	height: 15%;
+}
+
+.order-middle, .order-middle-second, .order-total {
+	height: 8%;
+	border-bottom: 2px solid black;
+}
+
+.order-product {
+	height: fit-content;
+	border-bottom: 1px solid black;
+}
+
+.order-total {
+	height: 15%;
+	padding-bottom: 30px;
+}
+
+.order-button {
+	text-align: center;
+	height: 30%;
+}
+
+.bottom-btn {
+	width: 30%;
+	height: 120%;
+}
+
+.order-middle {
+	margin-top: 5%;
+}
+
+.order-middle-second {
+	height: 13%;
+}
+
+.order-middle-second-col {
+	padding-top: 20px;
+	padding-bottom: 10px;
+	font-size: larger;
+}
+
+.order-table-column {
+	width: 30%;
+	height: 70%;
+	float: left;
+	text-align: center;
+	font-size: x-large;
+}
+
+#m-check {
+	width: 20px;
+	height: 20px;
+}
+
+.check-img {
+	width: 18px;
+	height: 18px;
+}
+
+#m-check:hover, #choice-delete:hover, #right-Button:hover, #left-Button:hover,
+	#subDev, #norDev {
+	cursor: pointer;
+}
+
+.product-img {
+	width: 90px;
+	height: 90px;
+}
+
+.start-row {
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px solid black;
+}
+
+.left-col {
+	height: 100%;
+	float: left;
+}
+
+.left-col-check {
+	padding-top: 34px;
+	float: left;
+}
+
+.left-col-img {
+	float: left;
+	margin-left: 25px;
+	padding-top: 4px;
+}
+
+.left-col-title {
+	color: rgb(135, 130, 130);
+	padding-top: 35px;
+	padding-left: 40px;
+	float: left;
+}
+
+.right-col {
+	height: 100%;
+	float: left;
+	padding-left: 40px
+}
+
+.right-col-quantity {
+	padding-top: 33px;
+	padding-left: 30px;
+	font-size: larger;
+	float: left;
+}
+
+.right-col-price {
+	padding-top: 33px;
+	margin-left: 30%;
+	font-size: larger;
+	float: left
+}
+
+.sub-col-price {
+	margin-left: 40%;
+}
+
+.title {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+}
+
+.title-process {
+	padding-top: 50px;
+	padding-bottom: 10px;
+	text-align: right;
+}
+
+.title-process-span {
+	font-size: large;
+	letter-spacing: 1px;
+}
+
+.title-process-span-bold {
+	color: rgb(142, 142, 82);
+}
+
+.division-col {
+	border-right: 1px solid;
+}
+
+.now-tab {
+	font-weight: bold;
+}
+
+.desc-order {
+	padding-top: 10px;
+	text-align: right;
+	font-size: small;
+}
+
+.order-total-desc {
+	font-size: large;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.order-total-price {
+	font-size: xx-large;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 10px;
+}

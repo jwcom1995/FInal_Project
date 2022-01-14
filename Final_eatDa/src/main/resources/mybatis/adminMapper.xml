@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="admin">
+	<!-- Admin Reply -->
+	<resultMap type="replyDto" id="replyMap">
+		<result property="reply_no" column="REPLY_NO" />
+		<result property="blog_no" column="BLOG_NO" />
+		<result property="user_id" column="USER_ID"/>
+		<result property="reply_content" column="REPLY_CONTENT"/>
+		<result property="regdate" column="REGDATE"/>
+		<result property="updatedate" column="UPDATEDATE"/>
+	</resultMap>
+
+	<select id="adminReplyList" parameterType="list" resultMap="replyMap">
+		SELECT * FROM BLOG_REPLY
+		ORDER BY REPLY_NO DESC
+	</select>
+	
+	<delete id="adminReplyDelete" parameterType="int">
+		DELETE FROM BLOG_REPLY WHERE REPLY_NO=#{reply_no}
+	</delete>
+	
+	<!-- Admin Product -->
+	<resultMap type="productDto" id="productMap">
+		<result property="p_id" column="P_ID" />
+		<result property="p_category" column="P_CATEGORY"></result>
+		<result property="p_name" column="P_NAME" />
+		<result property="p_short_desc" column="P_SHORT_DESC" />
+		<result property="p_price" column="P_PRICE"/>
+		<result property="p_description" column="P_DESCRIPTION" />
+		<result property="p_cal" column="P_CAL" />
+		<result property="p_amount" column="P_AMOUNT" />
+		<result property="seller_desc" column="SELLER_DESC" />		
+		<result property="img_path" column="IMG_PATH" />
+		<result property="p_no" column="P_NO" />
+	</resultMap>
+	
+	<select id="adminProductList" parameterType="list" resultMap="productMap">
+		SELECT * FROM PRODUCT ORDER BY P_NO DESC
+	</select>
+	
+	<select id="productSelectOne" parameterType="String" resultType="productDto">
+		SELECT P_ID,P_NAME,P_CATEGORY,P_SHORT_DESC,P_PRICE,P_DESCRIPTION,P_CAL,P_AMOUNT,SELLER_DESC,IMG_PATH,P_NO
+		FROM PRODUCT
+		WHERE P_ID=#{p_id}
+	</select>
+	
+	<insert id="adminProductInsert" parameterType="productDto">
+		INSERT INTO PRODUCT
+		VALUES(#{p_id},#{p_name},#{p_short_desc},#{p_price},#{p_description},#{p_cal},#{p_amount},#{seller_desc},#{img_path},#{p_no},#{p_category})	
+	</insert>
+	
+	<update id="adminProductUpdate" parameterType="productDto">
+		UPDATE PRODUCT
+		SET P_NAME=#{p_name},P_CATEGORY=#{p_category},P_SHORT_DESC=#{p_short_desc},P_DESCRIPTION=#{p_description},P_PRICE=#{p_price}, P_CAL=#{p_cal},P_AMOUNT=#{p_amount}, SELLER_DESC=#{seller_desc}
+		WHERE P_ID=#{p_id}
+	</update>
+	
+	<delete id="adminProductDelete" parameterType="String">
+		DELETE FROM PRODUCT WHERE P_ID=#{p_id}
+	</delete>
+	
+	<select id="getLastProductNum" resultType="productDto">
+		SELECT P_NO 
+		FROM (	SELECT ROWNUM RN, A.*
+				FROM (SELECT * FROM PRODUCT ORDER BY P_NO DESC) A)
+		WHERE 2>RN
+	</select>	
+	
+	<!-- Admin Order -->
+	<resultMap type="OrderDto" id="orderMap">
+		<result property="order_id" column="ORDER_ID" />
+		<result property="user_id" column="USER_ID" />
+		<result property="order_date" column="ORDER_DATE" />
+		<result property="order_addr" column="USER_PHONE" />
+		<result property="order_name" column="ORDER_NAME" />
+		<result property="order_phone" column="ORDER_PHONE" />
+		<result property="order_message" column="ORDER_MESSAGE" />
+		<result property="order_price" column="ORDER_PRICE" />
+		<result property="pay_option" column="PAY_OPTION" />
+		<result property="original_price" column="ORIGINAL_PRICE" />
+		<result property="discount_price" column="DICSOUNT_PRICE" />
+		<result property="coupon_rate" column="COUPON_RATE" />
+		<result property="coupon_id" column="COUNPON_ID" />
+		<result property="shipping_status" column="SHIPPING_STATUS" />
+		<result property="order_status" column="ORDER_STATUS" />
+	</resultMap>
+		
+	<select id="adminOrderList" parameterType="list" resultMap="orderMap">
+		SELECT * FROM E_ORDER
+		ORDER BY ORDER_ID DESC
+	</select>
+	
+	<insert id="adminOrderInsert" parameterType="orderDto">
+		INSERT INTO E_ORDER
+		VALUES(#{order_id},#{user_id},1,1)
+	</insert>
+	
+	<insert id="adminOrderInsert2" parameterType="orderDto">
+		INSERT INTO E_ORDER
+		VALUES(#{order_id},#{user_id},1,2)
+	</insert>
+	
+	<delete id="adminOrderDelete" parameterType="String">
+		DELETE FROM E_ORDER WHERE ORDER_ID=#{order_id}
+	</delete>
+	
+	<update id="shippingStatusUpdate" parameterType="orderDto">
+		UPDATE E_ORDER
+		SET SHIPPING_STATUS=#{shipping_status}
+		WHERE ORDER_ID=#{order_id}
+	</update>
+	
+	<update id="orderStatusUpdate" parameterType="orderDto">
+		UPDATE E_ORDER
+		SET ORDER_STATUS=#{order_status}
+		WHERE ORDER_ID=#{order_id}
+	</update>
+	
+	<select id="adminOrderCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM E_ORDER
+	</select>
+
+	<select id="newAdminOrderCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM E_ORDER
+		WHERE ORDER_STATUS ='결제 취소'
+	</select>	
+	
+	
+	<!-- Admin User -->
+	<resultMap type="userDto" id="userMap">
+		<result property="user_id" column="USER_ID" />
+		<result property="user_pw" column="USER_PW" />
+		<result property="user_name" column="USER_NAME" />
+		<result property="user_addr" column="USER_ADDR" />
+		<result property="user_email" column="USER_EMAIL" />
+		<result property="user_phone" column="USER_PHONE" />
+		<result property="user_role" column="USER_ROLE" />
+		<result property="user_img" column="USER_IMG" />
+		<result property="user_penalty" column="USER_PENALTY" />
+		<result property="user_enable" column="USER_ENABLE" />
+		<result property="user_mailing" column="USER_MAILING" />
+		<result property="user_addr_sub" column="USER_ADDR_SUB" />
+	</resultMap>
+		
+	<select id="adminUserList" parameterType="list" resultMap="userMap">
+		SELECT * FROM E_USER ORDER BY USER_ID DESC
+	</select>
+	
+	<update id="adminUserUpdate" parameterType="userDto">
+		UPDATE E_USER
+		SET USER_ENABLE=#{user_enable}
+		WHERE USER_ID=#{user_id}
+	</update>
+	<delete id="adminUserDelete" parameterType="String">
+		DELETE FROM E_USER WHERE USER_ID=#{user_id}
+	</delete>
+	
+	<select id="adminUserCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM E_USER
+	</select>
+	
+	<select id="newAdminUserCount" resultType="int">
+		SELECT COUNT(*) AS CNT 
+		FROM E_USER LEFT OUTER JOIN SUBSCRIPTION ON E_USER.USER_ID = SUBSCRIPTION.USER_ID
+		WHERE E_USER.USER_ID = SUBSCRIPTION.USER_ID
+	</select>
+
+	<!-- Admin Report -->
+	<resultMap type="reportDto" id="reportMap">
+		<result property="report_no" column="REPORT_NO" />
+		<result property="reporter" column="REPORTER" />
+		<result property="reported" column="REPORTED" />
+		<result property="reply_no" column="REPLY_NO" />
+		<result property="report_date" column="REPORT_DATE" />
+		<result property="report_status" column="REPORT_STATUS" />
+		<result property="report_content" column="REPORT_CONTENT" />
+		<result property="reply_content" column="REPLY_CONTENT" />
+		<result property="report_penalty" column="REPORT_PENALTY" />
+	</resultMap>
+	
+	<select id="adminReportList" parameterType="list" resultMap="reportMap">
+		SELECT * FROM REPORT
+		ORDER BY REPORT_NO DESC
+	</select>
+	
+	<update id="reportStatusUpdate" parameterType="reportDto">
+		UPDATE REPORT
+		SET REPORT_STATUS=#{report_status}, REPORT_PENALTY=#{report_penalty}
+		WHERE REPORT_NO=#{report_no}
+	</update>
+	
+	<delete id="adminReportDelete" parameterType="int">
+		DELETE FROM REPORT WHERE REPORT_NO=#{report_no}
+	</delete>
+	
+	<select id="adminReportCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM REPORT
+	</select>
+
+	<select id="newAdminReportCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM REPORT
+		WHERE 1>REPORT_PENALTY
+	</select>
+</mapper>
