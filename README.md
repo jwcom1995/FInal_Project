@@ -5,7 +5,7 @@
 <br>
 <img width="1012" alt="스크린샷 2022-01-14 오후 5 30 35" src="https://user-images.githubusercontent.com/82820237/149492523-a740e96c-cdf7-4faa-99a4-7f4e3c039d86.png">
 <br>
-<img width="997" alt="스크린샷 2022-01-14 오후 6 31 45" src="https://user-images.githubusercontent.com/82820237/149492727-90a117e6-ec5f-4973-b6de-90447e9b7e07.png">
+<img width="1015" alt="스크린샷 2022-01-14 오후 6 43 46" src="https://user-images.githubusercontent.com/82820237/149494548-6a859882-7700-462f-8ece-9101e619dbdc.png">
 <br>
 <img width="1011" alt="스크린샷 2022-01-14 오후 5 30 50" src="https://user-images.githubusercontent.com/82820237/149492417-d24b76b3-b4fb-4188-9032-7543e00bbdb9.png">
 <br><br>
