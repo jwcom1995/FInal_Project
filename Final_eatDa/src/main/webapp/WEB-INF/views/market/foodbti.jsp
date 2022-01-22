@@ -14,6 +14,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Gaegu:wght@700&family=IBM+Plex+Sans+KR:wght@200&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="resources/css/market/foodbti.css">
 <script type="text/javascript">
+/*
+ * script update 1/22(토) 
+ * 업데이트 내용 : jQuery 작성된 부분 순수 자바스크립트로 리팩토링
+ */
+
 let count = 0;
 let array = [];
 const questionArray = [
@@ -29,6 +34,9 @@ const questionArray = [
 //8페이지 끝나고 9페이지로 넘어갈 때 mbti 완성해서 페이지에 뿌려줘야함
 
 const response = (value) => {
+    const nowPageElement = document.getElementsByClassName('now-page')[0];
+    const questionDiv = document.getElementsByClassName('question-div')[0];
+    const paging = document.getElementsByClassName('paging')[0];
 	let nowPage = Number(document.getElementsByClassName('now-page')[0].innerText) + 1;
 	let mbti = '';
 	count += value;
@@ -54,91 +62,79 @@ const response = (value) => {
 	if (nowPage < 9) {
 		let nowQuestion = nowPage - 2;
 		$('.question-div').animate({ opacity: 0 }, 400, function() {
-			$('.question-div').html('');
-			$('.question-div').append(
-				'<span class="gaegu">STEP.</span>&nbsp;&nbsp;' +
-				'<span class="now-page gaegu"></span>' +
-				'<div class="question gaegu">'
-				+ questionArray[nowQuestion] +
-				'</div>'
-			);
-			$('.question-div').css('opacity', '1');
-			$('.now-page').text(nowPage);
+            questionDiv.innerHTML = 
+                '<span class="gaegu">STEP.</span>&nbsp;&nbsp;' +
+                '<span class="now-page gaegu"></span>' +
+                '<div class="question gaegu">'
+                + questionArray[nowQuestion] +
+                '</div>';
+            questionDiv.style.opacity = 1;
+            nowPageElement.innerText = nowPage;
 		});
 	} else if (nowPage == 9) {
-		$('.paging').addClass('after-question');
-		$('.paging').addClass('.gaegu');
-		$('.paging').html(
-			'당신의 성향을 파악하고 있습니다.'
-		);
-		$('.question-div').html(
-			'<div class="text-center">' +
+        paging.className += ' after-question';
+        paging.className += ' gaegu';
+        paging.innerHTML = '당신의 성향을 파악하고 있습니다.';
+        questionDiv.innerHTML = 
+            '<div class="text-center">' +
 			'<div class="spinner-border" role="status">' +
 			'</div>' +
-			'</div>'
-		);
-
-		setTimeout(function() {
-			for (var i = 0; i < 4; i++) {
-				mbti += array[i];
-			}
-			afterTest(mbti);
-		}, 2000);
+			'</div>';
+		setTimeout(() => {
+            for (var i = 0; i < 4; i++) {
+                mbti += array[i];
+            }
+            afterTest(mbti);
+        }, 2000);
 	}
 }
 
 const afterTest = (mbti) => {
-	$.ajax({
-		url: "getMbtiProduct.do?m_name=" + mbti,
-		type: "get",
-		dataType: "json",
-		success: function(data) {
-			$(data).each(function(key, value) {
-				$('.content-div').html(
-					"<div class='after-content'>" +
-					"<div class='after-paging' align='right'>" +
-					"<span style='font-size:medium'>EatDa 이달의 컨텐츠!</span><br>" +
-					"</div>" +
-					"<div class='question-box'>" +
-					"<div class='after-body'>" +
-					"<div class='question gaegu' style='margin-top: 20px;'>" +
-					"당신의 성향은 '" + value.m_name + "' 입니다." +
-					"</div>" +
-					"<div class='after-text gaegu'>" +
-					"<span style='font-size:medium;'>" + value.m_content + "</span><br>" +
-					"<span>당신에게 어울리는 음식은...</span>" +
-					"</div>" +
-					"</div>" +
-					"<div class='card p-card' align='left'>" +
-					"<div style='display:none' class='p-id'>" + value.p_id + "</div>" +
-					"<div class='img-div' align='center'>" +
-					"<img onclick='goProductPage(this)' src='" + value.img_path + "' class='card-img-top rec-img'>" +
-					"</div>" +
-					"<div class='card-body'>" +
-					"<h6 class='card-subtitle mb-2 text-muted'>" + value.p_short_desc + "</h6>" +
-					"<h5 class='card-title' onclick='goProductPage(this)'>" + value.p_name + "</h5>" +
-					"<p class='card-text'>" +
-					"<span>" + value.p_price + "</span><span>원</span>" +
-					"</p>" +
-					"<p class='card-text'>" + value.p_description + "</p>" +
-					"</div>" +
-					"</div>" +
-					"</div>" +
-					"</div>"
-				);
-			});
-		}
-	});
+    const contentDiv = document.getElementsByClassName('content-div')[0];
+    const data = fetch("https://localhost:8080/getMbtiProduct.do?m_name=" + mbti).then((response) => {
+        return response.json();
+    });
+    contentDiv.innerHTML = 
+        "<div class='after-content'>" +
+        "<div class='after-paging' align='right'>" +
+        "<span style='font-size:medium'>EatDa 이달의 컨텐츠!</span><br>" +
+        "</div>" +
+        "<div class='question-box'>" +
+        "<div class='after-body'>" +
+        "<div class='question gaegu' style='margin-top: 20px;'>" +
+        "당신의 성향은 '" + data.m_name + "' 입니다." +
+        "</div>" +
+        "<div class='after-text gaegu'>" +
+        "<span style='font-size:medium;'>" + data.m_content + "</span><br>" +
+        "<span>당신에게 어울리는 음식은...</span>" +
+        "</div>" +
+        "</div>" +
+        "<div class='card p-card' align='left'>" +
+        "<div style='display:none' class='p-id'>" + data.p_id + "</div>" +
+        "<div class='img-div' align='center'>" +
+        "<img onclick='goProductPage(this)' src='" + data.img_path + "' class='card-img-top rec-img'>" +
+        "</div>" +
+        "<div class='card-body'>" +
+        "<h6 class='card-subtitle mb-2 text-muted'>" + data.p_short_desc + "</h6>" +
+        "<h5 class='card-title' onclick='goProductPage(this)'>" + data.p_name + "</h5>" +
+        "<p class='card-text'>" +
+        "<span>" + data.p_price + "</span><span>원</span>" +
+        "</p>" +
+        "<p class='card-text'>" + data.p_description + "</p>" +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        "</div>";
 }
 
 const goProductPage = (object) => {
-	let p_id = $(object).parent().siblings('.p-id').text();
+	const p_id = document.getElementsByClassName('p-id')[0].innerText();
 	location.href = 'goProductPage.do?p_id=' + p_id;
 }
 
 const start = () => {
-	$('.content-div').html(
-		'<div class="content">' +
+	document.getElementsByClassName('content-div')[0].innerHTML = 
+        '<div class="content">' +
 		'<div class="paging" align="right">' +
 		'<span class="now-page">1</span>' +
 		'<span>/ 8</span>' +
@@ -156,8 +152,7 @@ const start = () => {
 		'<div class="btn-div d-grid gap-3 col-9 mx-auto">' +
 		'<button class="btn btn-outline-info q-btn" onclick="response(1)">정말 그렇다</button>' +
 		'<button class="btn btn-outline-danger q-btn" onclick="response(0)">전혀 아니다</button>' +
-		'</div>'
-	);
+		'</div>';
 }
 </script>
 </head>
