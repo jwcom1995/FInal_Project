@@ -30,5 +30,10 @@
 <br>
 <img width="1440" alt="스크린샷 2022-01-14 오후 6 37 47" src="https://user-images.githubusercontent.com/82820237/149493571-f98ec587-7ba3-4461-85ea-6845c462f8a4.png">
 <br>
-
+<br>
+<hr>
+<ul> 
+  <li><h2>코드 수정</h2></li>
+  <li>1/22 : footBTI 페이지 jQuery 코드 걷어내기</li>
+</ul>
 
