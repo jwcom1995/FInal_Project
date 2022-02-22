@@ -7,6 +7,8 @@
 <br>
 <img width="1015" alt="스크린샷 2022-01-14 오후 6 43 46" src="https://user-images.githubusercontent.com/82820237/149494548-6a859882-7700-462f-8ece-9101e619dbdc.png">
 <br>
+<img width="1015" alt="스크린샷 2022-02-22 오후 4 04 12" src="https://user-images.githubusercontent.com/82820237/155079793-85ef28dc-b2e3-4b19-9011-3bed7744447f.png">
+<br>
 <img width="1011" alt="스크린샷 2022-01-14 오후 5 30 50" src="https://user-images.githubusercontent.com/82820237/149492417-d24b76b3-b4fb-4188-9032-7543e00bbdb9.png">
 <br><br>
 <h2>구성원 및 역할</h2>
